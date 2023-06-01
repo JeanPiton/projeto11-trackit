@@ -24,7 +24,9 @@ const Form = styled.form`
         border: 1px solid #d5d5d5;
         border-radius: 5px;
         background-color: ${Colors.input.Background};
-        color: ${Colors.input.color};
+        ::placeholder{
+            color: ${Colors.input.placeholder}
+        }
     }
 
     button{
@@ -40,7 +42,7 @@ const Form = styled.form`
     }
 `;
 
-const A = styled.a`
+const A = styled.p`
     color:${Colors.link.color};
     text-decoration: underline;
 `;
