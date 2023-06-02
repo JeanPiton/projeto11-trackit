@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { Div, Form, A } from "../../style/FormStyle";
 import { ThreeDots } from "react-loader-spinner";
 import { Link, useNavigate } from "react-router-dom";
+import Logo from "../../img/logo.svg";
 import axios from "axios";
 import UserContext from "../../contexts/UserContext";
 import urls from "../../constants/urls";
@@ -35,6 +36,7 @@ export default function Login(){
 
     return(
         <Div>
+            <img src={Logo}/>
             <Form onSubmit={doLogin}>
                 <input type="email" name="email" placeholder="email" required disabled={input} value={email} onChange={e=>setEmail(e.target.value)}/>
                 <input type="password" name="password" placeholder="senha" required disabled={input} value={password} onChange={e=>setPassword(e.target.value)}/>

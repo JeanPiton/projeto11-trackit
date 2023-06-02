@@ -4,6 +4,7 @@ import { ThreeDots } from "react-loader-spinner";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import urls from "../../constants/urls";
+import Logo from "../../img/logo.svg";
 
 export default function Signup(){
     const [email, setEmail] = useState("");
@@ -33,6 +34,7 @@ export default function Signup(){
 
     return(
         <Div>
+            <img src={Logo}/>
             <Form onSubmit={SignUp}>
                 <input type="email" name="email" placeholder="email" required disabled={input} value={email} onChange={e=>setEmail(e.target.value)}/>
                 <input type="password" name="password" placeholder="senha" required disabled={input} value={password} onChange={e=>setPassword(e.target.value)}/>

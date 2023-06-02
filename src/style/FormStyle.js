@@ -7,8 +7,12 @@ const Div = styled.div`
     display:flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 25px;
+
+    img{
+        margin-top: 68px;
+    }
 `;
 
 const Form = styled.form`
