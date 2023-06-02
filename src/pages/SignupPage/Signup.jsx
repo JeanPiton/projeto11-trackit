@@ -36,13 +36,13 @@ export default function Signup(){
         <Div>
             <img src={Logo}/>
             <Form onSubmit={SignUp}>
-                <input type="email" name="email" placeholder="email" required disabled={input} value={email} onChange={e=>setEmail(e.target.value)}/>
-                <input type="password" name="password" placeholder="senha" required disabled={input} value={password} onChange={e=>setPassword(e.target.value)}/>
-                <input type="text" name="name" placeholder="nome" required disabled={input} value={name} onChange={e=>setName(e.target.value)}/>
-                <input type="url" name="image" placeholder="foto" required disabled={input} value={image} onChange={e=>setImage(e.target.value)}/>                
-                <button disabled={input}>{btn}</button>
+                <input data-test="email-input" type="email" name="email" placeholder="email" required disabled={input} value={email} onChange={e=>setEmail(e.target.value)}/>
+                <input data-test="password-input" type="password" name="password" placeholder="senha" required disabled={input} value={password} onChange={e=>setPassword(e.target.value)}/>
+                <input data-test="user-name-input" type="text" name="name" placeholder="nome" required disabled={input} value={name} onChange={e=>setName(e.target.value)}/>
+                <input data-test="user-image-input" type="url" name="image" placeholder="foto" required disabled={input} value={image} onChange={e=>setImage(e.target.value)}/>                
+                <button data-test="signup-btn" disabled={input}>{btn}</button>
             </Form>
-            <Link to={"/"}><A>Já tem uma conta? Faça login!</A></Link>
+            <Link data-test="login-link" to={"/"}><A>Já tem uma conta? Faça login!</A></Link>
         </Div>
     );
 }
