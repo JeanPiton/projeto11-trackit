@@ -5,15 +5,15 @@ import dump from "../../img/dump.svg";
 
 export default function Habit(props){
     return(
-        <Div>
+        <Div data-test="habit-container">
             <div>
-                <h1>{props.name}</h1>
+                <h1 data-test="habit-name">{props.name}</h1>
                 <Days>
-                   {week.map((e,i)=><Day key={i} $selected={props.days.includes(i)} type="button">{e}</Day>)}
+                   {week.map((e,i)=><Day data-test="habit-day" key={i} $selected={props.days.includes(i)} type="button">{e}</Day>)}
                 </Days>
             </div>
             <BtnDiv>
-                <img src={dump} onClick={()=>props.func(props.id)}/>
+                <img data-test="habit-delete-btn" src={dump} onClick={()=>props.func(props.id)}/>
             </BtnDiv>
         </Div>
     );
