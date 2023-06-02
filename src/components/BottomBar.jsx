@@ -18,15 +18,15 @@ export default function BottomBar(){
     return(
         <Div data-test="menu">
             <Link data-test="habit-link" to="/habitos">Hábitos</Link>
-            <Pcontainer>
-                <CircularProgressbar data-test="today-link" value={user.tasksdone} text="Hoje" background={true} backgroundPadding={6}
+            <Pcontainer data-test="today-link" onClick={()=>navigate("/hoje")}>
+                <CircularProgressbar value={user.tasksdone} text="Hoje" background={true} backgroundPadding={6}
                 styles={buildStyles({
                     textSize: '17px',
                     textColor: Colors.progress.Textcolor,
                     trailColor: Colors.progress.Trailcolor,
                     pathColor: Colors.progress.Pathcolor,
                     backgroundColor: Colors.progress.Background
-                })} onClick={()=>navigate("/hoje")}/>
+                })}/>
             </Pcontainer>
             <Link data-test="history-link" to="/historico">Histórico</Link>
         </Div>
