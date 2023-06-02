@@ -3,6 +3,7 @@ import UserContext from "../contexts/UserContext";
 import styled from "styled-components";
 import Colors from "../constants/colors";
 import { useLocation } from "react-router-dom";
+import Logo from "../img/logo-mini.svg";
 
 export default function TopBar(){
     const {user} = useContext(UserContext);
@@ -14,7 +15,7 @@ export default function TopBar(){
 
     return(
         <Div>
-            <img/>
+            <img className="Logo" src={Logo}/>
             <img src={user.image} />
         </Div>
     );
@@ -31,6 +32,11 @@ const Div = styled.div`
     align-items: center;
     background-color: ${Colors.top.Background};
     padding: 0 10px;
+
+    .Logo{
+        width: 97px;
+        height: 49px;
+    }
 
     img{
         width: 51px;
