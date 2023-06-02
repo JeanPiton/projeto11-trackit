@@ -2,11 +2,13 @@ import { useContext } from "react";
 import UserContext from "../contexts/UserContext";
 import styled from "styled-components";
 import Colors from "../constants/colors";
+import { useLocation } from "react-router-dom";
 
 export default function TopBar(){
     const {user} = useContext(UserContext);
+    const location = useLocation();
 
-    if(!user){
+    if(location.pathname=="/"||location.pathname=="/cadastro"){
         return;
     }
 

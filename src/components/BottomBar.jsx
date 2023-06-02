@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css'
 import UserContext from "../contexts/UserContext";
@@ -6,17 +7,18 @@ import styled from "styled-components";
 import Colors from "../constants/colors";
 
 export default function BottomBar(){
-    const {user} = useContext(UserContext);
+    const {user, SetUser} = useContext(UserContext);
+    const location = useLocation();
 
-    if(!user){
+    if(location.pathname=="/"||location.pathname=="/cadastro"){
         return;
     }
 
     return(
         <Div>
-            <h1>Hábitos</h1>
+            <Link to="/habitos">Hábitos</Link>
             <Pcontainer>
-                <CircularProgressbar value={10} text="Hoje" background={true} backgroundPadding={6}
+                <CircularProgressbar value={user.tasksdone} text="Hoje" background={true} backgroundPadding={6}
                 styles={buildStyles({
                     textSize: '17px',
                     textColor: Colors.progress.Textcolor,
@@ -25,7 +27,7 @@ export default function BottomBar(){
                     backgroundColor: Colors.progress.Background
                 })}/>
             </Pcontainer>
-            <h1>Histórico</h1>
+            <Link to="/historico">Histórico</Link>
         </Div>
     );
 }
@@ -42,13 +44,14 @@ const Div = styled.div`
     background-color: ${Colors.bottom.Background};
     padding: 0 10px;
 
-    h1{
+    a{
         color: ${Colors.bottom.color};
+        text-decoration: none;
     }
 `;
 
 const Pcontainer = styled.div`
     width: 91px;
     height: 91px;
-    margin-bottom: 48px;
+    margin-bottom: 70px;
 `;

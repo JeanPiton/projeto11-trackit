@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { Div, Form, A } from "../../style/FormStyle";
 import { ThreeDots } from "react-loader-spinner";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import UserContext from "../../contexts/UserContext";
 import urls from "../../constants/urls";
@@ -12,6 +12,7 @@ export default function Login(){
     const [btn, setBtn] = useState("Entrar");
     const [input,setInput] = useState(false);
     const {user, SetUser} = useContext(UserContext);
+    const navigate = useNavigate();
 
     function doLogin(event){
         const data = {email, password}
@@ -22,6 +23,7 @@ export default function Login(){
         axios.post(urls.Login,data)
         .then(r=>{
             SetUser(r.data);
+            navigate("/hoje")
         })
         .catch(e=>{
             console.log(e);
