@@ -38,11 +38,11 @@ export default function Login(){
         <Div>
             <img src={Logo}/>
             <Form onSubmit={doLogin}>
-                <input type="email" name="email" placeholder="email" required disabled={input} value={email} onChange={e=>setEmail(e.target.value)}/>
-                <input type="password" name="password" placeholder="senha" required disabled={input} value={password} onChange={e=>setPassword(e.target.value)}/>
-                <button disabled={input}>{btn}</button>
+                <input data-test="email-input" type="email" name="email" placeholder="email" required disabled={input} value={email} onChange={e=>setEmail(e.target.value)}/>
+                <input data-test="password-input" type="password" name="password" placeholder="senha" required disabled={input} value={password} onChange={e=>setPassword(e.target.value)}/>
+                <button data-test="login-btn" disabled={input}>{btn}</button>
             </Form>
-            <Link to={"/cadastro"}><A>Não tem um conta? Cadastre-se!</A></Link>
+            <Link data-test="signup-link" to={"/cadastro"}><A>Não tem um conta? Cadastre-se!</A></Link>
         </Div>
     );
 }
