@@ -33,18 +33,18 @@ export default function Create(props){
     }
 
     return(
-        <Div $visible={props.visible}>
+        <Div data-test="habit-create-container" $visible={props.visible}>
             <CForm onSubmit={Confirm}>
                 <div>
-                    <input type="text" placeholder="nome do hábito" name="name" value={name} onChange={e=>setName(e.target.value)} required></input>
+                    <input data-test="habit-name-input" type="text" placeholder="nome do hábito" name="name" value={name} onChange={e=>setName(e.target.value)} required></input>
                     <Days>
-                        {week.map((e,i)=><Day key={i} $selected={days.includes(i)} onClick={()=>SelectDay(i)} type="button">{e}</Day>)}
+                        {week.map((e,i)=><Day data-test="habit-day" key={i} $selected={days.includes(i)} onClick={()=>SelectDay(i)} type="button">{e}</Day>)}
                     </Days>
                 </div>
                 
                 <Btn>
-                    <Button $invert type="reset" onClick={()=>Reset()}>Cancelar</Button>
-                    <Button type="submit">Salvar</Button>
+                    <Button data-test="habit-create-cancel-btn" $invert type="reset" onClick={()=>Reset()}>Cancelar</Button>
+                    <Button data-test="habit-create-save-btn" type="submit">Salvar</Button>
                 </Btn>
             </CForm>
         </Div>

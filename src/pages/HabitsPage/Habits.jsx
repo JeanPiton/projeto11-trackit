@@ -7,6 +7,7 @@ import UserContext from "../../contexts/UserContext";
 import Colors from "../../constants/colors";
 import Create from "../../components/CreateHabit";
 import Habit from "./Habit";
+import Plus from "../../img/plus.svg";
 
 export default function Habits(){
     const [update, setUpdate] = useState(true);
@@ -46,7 +47,9 @@ export default function Habits(){
         <Div>
             <TopDiv>
                 <h1>Meus Hábitos</h1>
-                <button onClick={()=>setCreating(true)}>+</button>
+                <button data-test="habit-create-btn" onClick={()=>setCreating(true)}>
+                    <img src={Plus}/>
+                </button>
             </TopDiv>
             <CreateDiv>
                 <Create visible={creating} funcVisibility={setCreating} funcHabit={setHabit}/>
