@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css'
 import UserContext from "../contexts/UserContext";
@@ -9,25 +9,26 @@ import Colors from "../constants/colors";
 export default function BottomBar(){
     const {user, SetUser} = useContext(UserContext);
     const location = useLocation();
+    const navigate = useNavigate();
 
     if(location.pathname=="/"||location.pathname=="/cadastro"){
         return;
     }
 
     return(
-        <Div>
-            <Link to="/habitos">Hábitos</Link>
+        <Div data-test="menu">
+            <Link data-test="habit-link" to="/habitos">Hábitos</Link>
             <Pcontainer>
-                <CircularProgressbar value={user.tasksdone} text="Hoje" background={true} backgroundPadding={6}
+                <CircularProgressbar data-test="today-link" value={user.tasksdone} text="Hoje" background={true} backgroundPadding={6}
                 styles={buildStyles({
                     textSize: '17px',
                     textColor: Colors.progress.Textcolor,
                     trailColor: Colors.progress.Trailcolor,
                     pathColor: Colors.progress.Pathcolor,
                     backgroundColor: Colors.progress.Background
-                })}/>
+                })} onClick={()=>navigate("/hoje")}/>
             </Pcontainer>
-            <Link to="/historico">Histórico</Link>
+            <Link data-test="history-link" to="/historico">Histórico</Link>
         </Div>
     );
 }

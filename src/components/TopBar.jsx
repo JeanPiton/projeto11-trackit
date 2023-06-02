@@ -14,9 +14,9 @@ export default function TopBar(){
     }
 
     return(
-        <Div>
+        <Div data-test="header">
             <img className="Logo" src={Logo}/>
-            <img src={user.image} />
+            <img data-test="avatar" src={user.image} />
         </Div>
     );
 }
