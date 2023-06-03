@@ -14,6 +14,7 @@ export default function Habits(){
     const [habits, setHabits] = useState();
     const [creating, setCreating] = useState(false);
     const [habit, setHabit] = useState();
+    const [enable, setEnable] = useState(true);
     const {user} = useContext(UserContext);
     const config = {headers:{Authorization:`Bearer ${user.token}`}}
 
@@ -25,13 +26,16 @@ export default function Habits(){
         })
         .catch(r=>console.log(r))
         if(habit){
+            setEnable(false);
             axios.post(urls.Create,habit,config)
             .then(()=>{
                 console.log("enviado");
                 setUpdate(!update);
                 setHabit();
+                setCreating(false);
             })
-            .catch(()=>alert("Tente novamente mais tarde"));
+            .catch(()=>alert("Tente novamente"))
+            .then(()=>setEnable(true));
             console.log("Habito");
         }
     },[habit,update])
@@ -55,12 +59,12 @@ export default function Habits(){
                 </button>
             </TopDiv>
             <CreateDiv>
-                <Create visible={creating} funcVisibility={setCreating} funcHabit={setHabit}/>
+                <Create visible={creating} funcVisibility={setCreating} funcHabit={setHabit} enabled={enable}/>
             </CreateDiv>
             <HabitsDiv>
                 {!habits||habits.length==0?
                 "Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!":
-                habits.map(e=><Habit days={e.days} name={e.name} id={e.id} func={RemoveHabit}/>)}
+                habits.map((e,i)=><Habit key={i} days={e.days} name={e.name} id={e.id} func={RemoveHabit}/>)}
             </HabitsDiv>
         </Div>
     );

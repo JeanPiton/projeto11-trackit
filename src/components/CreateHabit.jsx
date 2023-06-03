@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Colors from "../constants/colors";
 import { useState } from "react";
 import { week,Days,Day } from "./DaysButton";
+import { ThreeDots } from "react-loader-spinner";
 
 export default function Create(props){
     const [days, setDays] = useState([]);
@@ -19,8 +20,6 @@ export default function Create(props){
     }
 
     function Reset(){
-        setDays([]);
-        setName("");
         props.funcVisibility(false);
     }
 
@@ -28,23 +27,23 @@ export default function Create(props){
         event.preventDefault();
 
         props.funcHabit({name, days});
-        Reset();
-        props.funcVisibility(false);
+        setDays([]);
+        setName("");
     }
 
     return(
         <Div data-test="habit-create-container" $visible={props.visible}>
             <CForm onSubmit={Confirm}>
                 <div>
-                    <input data-test="habit-name-input" type="text" placeholder="nome do hábito" name="name" value={name} onChange={e=>setName(e.target.value)} required></input>
+                    <input data-test="habit-name-input" type="text" placeholder="nome do hábito" name="name" value={name} onChange={e=>setName(e.target.value)} required disabled={!props.enabled}></input>
                     <Days>
-                        {week.map((e,i)=><Day data-test="habit-day" key={i} $selected={days.includes(i)} onClick={()=>SelectDay(i)} type="button">{e}</Day>)}
+                        {week.map((e,i)=><Day data-test="habit-day" key={i} $selected={days.includes(i)} onClick={()=>SelectDay(i)} type="button" disabled={!props.enabled}>{e}</Day>)}
                     </Days>
                 </div>
                 
                 <Btn>
-                    <Button data-test="habit-create-cancel-btn" $invert type="reset" onClick={()=>Reset()}>Cancelar</Button>
-                    <Button data-test="habit-create-save-btn" type="submit">Salvar</Button>
+                    <Button data-test="habit-create-cancel-btn" $invert type="button" onClick={()=>Reset()} disabled={!props.enabled}>Cancelar</Button>
+                    <Button data-test="habit-create-save-btn" type="submit" disabled={!props.enabled}>{props.enabled?"Salvar":<ThreeDots height="10" color="white"/>}</Button>
                 </Btn>
             </CForm>
         </Div>
