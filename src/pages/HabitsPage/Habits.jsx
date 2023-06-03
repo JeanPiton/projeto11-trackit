@@ -37,10 +37,13 @@ export default function Habits(){
     },[habit,update])
 
     function RemoveHabit(id){
-        const url = Parse(urls.Remove, id);
-        axios.delete(url,config)
-        .then(()=>{setUpdate(!update)})
-        .catch(()=>alert("tente novamente"));
+        if(confirm("Você tem certeza?")){
+            const url = Parse(urls.Remove, id);
+            axios.delete(url,config)
+            .then(()=>{setUpdate(!update)})
+            .catch(()=>alert("tente novamente"));
+        }
+        
     }
 
     return(
