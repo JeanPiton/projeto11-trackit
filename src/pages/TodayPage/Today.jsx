@@ -5,6 +5,7 @@ import Colors from '../../constants/colors';
 import Habit from './Habit';
 import { useContext, useEffect, useState } from 'react';
 import UserContext from '../../contexts/UserContext';
+import { Parse } from '../../constants/urls';
 import urls from '../../constants/urls';
 import axios from 'axios';
 
@@ -14,26 +15,44 @@ export default function Today(){
     today = today.charAt(0).toUpperCase() + today.slice(1);
     const [habits, setHabits] = useState();
     const [update, setUpdate] = useState(true);
-    const {user} = useContext(UserContext);
+    const {user, tasks, SetTasks} = useContext(UserContext);
     const config = {headers:{Authorization:`Bearer ${user.token}`}}
 
     useEffect(()=>{
         axios.get(urls.Today,config)
         .then(r=>{
-            console.log(habits);
             setHabits(r.data);
-        })
+            const total = r.data.length;
+            const done = r.data.filter(e=>e.done).length;
+            console.log({done, total})
+            SetTasks({done, total})
+        });
     },[update]);
+
+    function TasksState(id, check){
+        if(check){
+            axios.post(Parse(urls.Check,id),{},config)
+            .then(()=>{setUpdate(!update)})
+            .catch(()=>alert("Tente novamente"));
+            console.log("check");
+        }else{
+            axios.post(Parse(urls.Uncheck,id),{},config)
+            .then(()=>{setUpdate(!update)})
+            .catch(()=>alert("Tente novamente"));
+            console.log("unchecked");
+        }
+    }
 
     return(
         <Div>
-            <TopDiv>
+            <TopDiv $done={tasks.done>0}>
                 <h1>{today}</h1>
-                <h2>Nenhum habito concluido ainda</h2>
+                <h2>{tasks.done==0?"Nenhum hábito concluído ainda":
+                `${(tasks.done/tasks.total)*100}% dos hábitos concluídos`}</h2>
             </TopDiv>
             <HabitsDiv>
                 {!habits||habits.length===0?"Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!":
-                habits.map((e,i)=><Habit key={i} current={e.currentSequence} highest={e.highestSequence} name={e.name} done={e.done} id={e.id}/>)}
+                habits.map((e,i)=><Habit key={i} current={e.currentSequence} highest={e.highestSequence} name={e.name} done={e.done} id={e.id} func={TasksState}/>)}
             </HabitsDiv>
         </Div>
     );
@@ -56,13 +75,10 @@ const TopDiv = styled.div`
     align-items: flex-start;
     justify-content: center;
 
-    button{
-        width: 40px;
-        height: 35px;
-        border: none;
-        border-radius: 4.6px;
-        color: ${Colors.button.Textcolor};
-        background-color: ${Colors.button.Background};
+    h1{}
+
+    h2{
+        color: ${prop=>prop.$done?Colors.check.Checked:"#BABABA"};
     }
 `;
 

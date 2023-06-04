@@ -4,18 +4,18 @@ import Colors from "../../constants/colors";
 import { useState } from "react";
 
 export default function Habit(props){
-    const [check, setCheck] = useState(props.done);
+    const check = props.done;
 
     function Checker(){
-        setCheck(!check);
+        props.func(props.id, !check);
     }
 
     return(
         <Div>
-            <TextDiv>
+            <TextDiv $current={props.current} $highest={props.highest} $checked={check}>
                 <h1>{props.name}</h1>
-                <p>Sequencia atual: {props.current}</p>
-                <p>Seu recorde: {props.highest}</p>
+                <p>Sequencia atual: <h2>{props.current} dias</h2></p>
+                <p>Seu recorde: <h3>{props.highest} dias</h3></p>
             </TextDiv>
             <Image onClick={()=>Checker()} $checked={check}>
                 <img src={Check}/>
@@ -35,7 +35,17 @@ const Image = styled.div`
 `;
 
 const TextDiv = styled.div`
+    p{
+        h2{
+            display: inline;
+            color: ${prop=>prop.$checked?Colors.check.Checked:"#666666"};
+        }
 
+        h3{
+            display: inline;
+            color: ${prop=>(prop.$current==prop.$highest)&&(prop.$highest!=0)?Colors.check.Checked:"#666666"};
+        }
+    }
 `;
 
 const Div = styled.div`

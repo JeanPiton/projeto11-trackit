@@ -7,7 +7,7 @@ import styled from "styled-components";
 import Colors from "../constants/colors";
 
 export default function BottomBar(){
-    const {user, SetUser} = useContext(UserContext);
+    const {tasks} = useContext(UserContext);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -19,7 +19,7 @@ export default function BottomBar(){
         <Div data-test="menu">
             <Link data-test="habit-link" to="/habitos">Hábitos</Link>
             <Pcontainer data-test="today-link" onClick={()=>navigate("/hoje")}>
-                <CircularProgressbar value={user.tasksdone} text="Hoje" background={true} backgroundPadding={6}
+                <CircularProgressbar value={tasks.done} maxValue={tasks.total} text="Hoje" background={true} backgroundPadding={6}
                 styles={buildStyles({
                     textSize: '17px',
                     textColor: Colors.progress.Textcolor,
