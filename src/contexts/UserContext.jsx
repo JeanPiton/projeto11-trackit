@@ -1,9 +1,9 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 const UserContext = createContext();
 
 export function UserProvider({children}){
-    const [user, setUser] = useState();
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
     const [tasks, setTasks] = useState({done:0, total:0});
 
     function SetUser(p){

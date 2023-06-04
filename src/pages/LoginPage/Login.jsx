@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Div, Form, A } from "../../style/FormStyle";
 import { ThreeDots } from "react-loader-spinner";
 import { Link, useNavigate } from "react-router-dom";
@@ -15,6 +15,8 @@ export default function Login(){
     const {user, SetUser} = useContext(UserContext);
     const navigate = useNavigate();
 
+    useEffect(()=>{navigate("/hoje")},[])
+
     function doLogin(event){
         const data = {email, password}
         event.preventDefault();
@@ -24,6 +26,7 @@ export default function Login(){
         axios.post(urls.Login,data)
         .then(r=>{
             SetUser(r.data);
+            localStorage.setItem("user",JSON.stringify(r.data));
             navigate("/hoje")
         })
         .catch(e=>{
