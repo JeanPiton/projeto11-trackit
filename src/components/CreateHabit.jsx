@@ -26,16 +26,20 @@ export default function Create(props){
     function Confirm(event){
         event.preventDefault();
 
-        props.funcHabit({name, days});
-        setDays([]);
-        setName("");
+        if(name==""){
+            alert("Não deixe campo vazio");
+        }else{
+            props.funcHabit({name, days});
+            setDays([]);
+            setName("");    
+        }
     }
 
     return(
         <Div data-test="habit-create-container" $visible={props.visible}>
             <CForm onSubmit={Confirm}>
                 <div>
-                    <input data-test="habit-name-input" type="text" placeholder="nome do hábito" name="name" value={name} onChange={e=>setName(e.target.value)} required disabled={!props.enabled}></input>
+                    <input data-test="habit-name-input" type="text" placeholder="nome do hábito" name="name" value={name} onChange={e=>setName(e.target.value)} disabled={!props.enabled}></input>
                     <Days>
                         {week.map((e,i)=><Day data-test="habit-day" key={i} $selected={days.includes(i)} onClick={()=>SelectDay(i)} type="button" disabled={!props.enabled}>{e}</Day>)}
                     </Days>

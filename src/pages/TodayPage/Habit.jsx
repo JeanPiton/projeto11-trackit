@@ -37,7 +37,7 @@ const Image = styled.div`
 const TextDiv = styled.div`
     p{
         .current{
-            color: ${prop=>prop.$checked?Colors.check.Checked:"#666666"};
+            color: ${prop=>prop.$checked?"green":"#666666"};
         }
 
         .highest{
