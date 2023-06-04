@@ -46,13 +46,13 @@ export default function Today(){
     return(
         <Div>
             <TopDiv $done={tasks.done>0}>
-                <h1>{today}</h1>
-                <h2>{tasks.done==0?"Nenhum hábito concluído ainda":
+                <h1 data-test="today">{today}</h1>
+                <h2 data-test="today-counter">{tasks.done==0?"Nenhum hábito concluído ainda":
                 `${(tasks.done/tasks.total)*100}% dos hábitos concluídos`}</h2>
             </TopDiv>
             <HabitsDiv>
                 {!habits||habits.length===0?"Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!":
-                habits.map((e,i)=><Habit key={i} current={e.currentSequence} highest={e.highestSequence} name={e.name} done={e.done} id={e.id} func={TasksState}/>)}
+                habits.map((e,i)=><Habit key={i} current={e.currentSequence} highest={e.highestSequence} name={e.name} done={e.done} id={e.id} func={TasksState} data-test="today-habit-container"/>)}
             </HabitsDiv>
         </Div>
     );

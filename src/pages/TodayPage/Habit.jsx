@@ -13,11 +13,11 @@ export default function Habit(props){
     return(
         <Div>
             <TextDiv $current={props.current} $highest={props.highest} $checked={check}>
-                <h1>{props.name}</h1>
-                <p>Sequencia atual: <h2>{props.current} dias</h2></p>
-                <p>Seu recorde: <h3>{props.highest} dias</h3></p>
+                <h1 data-test="today-habit-name">{props.name}</h1>
+                <p data-test="today-habit-sequence">Sequencia atual: <h2>{props.current} dias</h2></p>
+                <p data-test="today-habit-record">Seu recorde: <h3>{props.highest} dias</h3></p>
             </TextDiv>
-            <Image onClick={()=>Checker()} $checked={check}>
+            <Image data-test="today-habit-check-btn" onClick={()=>Checker()} $checked={check}>
                 <img src={Check}/>
             </Image>
         </Div>
