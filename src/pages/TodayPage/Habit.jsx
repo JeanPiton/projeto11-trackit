@@ -35,9 +35,13 @@ const Image = styled.div`
 `;
 
 const TextDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
     p{
         .current{
-            color: ${prop=>prop.$checked?"green":"#666666"};
+            color: ${prop=>prop.$checked?Colors.check.Checked:"#666666"};
         }
 
         .highest{
@@ -56,6 +60,11 @@ const Div = styled.div`
     border-radius: 5px;
 
     h1{
-        margin-bottom: 8px;
+        margin-bottom: 4px;
+        font-size: 20px;
+    }
+
+    p{
+        font-size: 13px;
     }
 `;

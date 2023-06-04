@@ -31,6 +31,7 @@ const Form = styled.form`
         ::placeholder{
             color: ${Colors.input.placeholder}
         }
+        padding: 10px;
     }
 
     button{
@@ -47,6 +48,7 @@ const Form = styled.form`
 `;
 
 const A = styled.p`
+    font-size: 14px;
     color:${Colors.link.color};
     text-decoration: underline;
 `;

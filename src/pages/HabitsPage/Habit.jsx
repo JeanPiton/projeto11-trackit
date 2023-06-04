@@ -30,6 +30,7 @@ const Div = styled.div`
 
     h1{
         margin-bottom: 8px;
+        color: #666666;
     }
 `;
 

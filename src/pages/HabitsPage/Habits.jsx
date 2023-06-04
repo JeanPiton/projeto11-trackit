@@ -94,6 +94,11 @@ const TopDiv = styled.div`
         color: ${Colors.button.Textcolor};
         background-color: ${Colors.button.Background};
     }
+
+    h1{
+        font-size: 23px;
+        color:#126BA5;
+    }
 `;
 
 const CreateDiv = styled.div``;
@@ -102,4 +107,6 @@ const HabitsDiv = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
+    font-size: 18px;
+    color:#666666;
 `;

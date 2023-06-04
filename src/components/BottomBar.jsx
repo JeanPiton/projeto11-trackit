@@ -21,7 +21,7 @@ export default function BottomBar(){
             <Pcontainer data-test="today-link" onClick={()=>navigate("/hoje")}>
                 <CircularProgressbar value={tasks.done} maxValue={tasks.total} text="Hoje" background={true} backgroundPadding={6}
                 styles={buildStyles({
-                    textSize: '17px',
+                    textSize: '18px',
                     textColor: Colors.progress.Textcolor,
                     trailColor: Colors.progress.Trailcolor,
                     pathColor: Colors.progress.Pathcolor,
@@ -46,6 +46,7 @@ const Div = styled.div`
     padding: 0 10px;
 
     a{
+        font-size: 18px;
         color: ${Colors.bottom.color};
         text-decoration: none;
     }

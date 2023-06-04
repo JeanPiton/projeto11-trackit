@@ -74,10 +74,15 @@ const TopDiv = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+    gap: 5px;
 
-    h1{}
+    h1{
+        font-size: 23px;
+        color: ${Colors.top.Background};
+    }
 
     h2{
+        font-size: 18px;
         color: ${prop=>prop.$done?Colors.check.Checked:"#BABABA"};
     }
 `;
@@ -86,4 +91,6 @@ const HabitsDiv = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
+    color: #666666;
+    font-size: 18px;
 `;

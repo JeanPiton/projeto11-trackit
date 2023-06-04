@@ -69,6 +69,7 @@ const Button = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 16px;
     border-style: none;
     border-radius: 5px;
     color: ${prop=>prop.$invert?Colors.create.BtnBack:Colors.create.BtnColor};
@@ -81,6 +82,7 @@ const Btn = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+    gap: 10px;
 `;
 
 
