@@ -52,7 +52,7 @@ export default function Today(){
             </TopDiv>
             <HabitsDiv>
                 {!habits||habits.length===0?"Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!":
-                habits.map((e,i)=><Habit key={i} current={e.currentSequence} highest={e.highestSequence} name={e.name} done={e.done} id={e.id} func={TasksState} data-test="today-habit-container"/>)}
+                habits.map((e,i)=><Habit key={i} current={e.currentSequence} highest={e.highestSequence} name={e.name} done={e.done} id={e.id} func={TasksState} />)}
             </HabitsDiv>
         </Div>
     );

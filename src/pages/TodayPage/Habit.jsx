@@ -11,7 +11,7 @@ export default function Habit(props){
     }
 
     return(
-        <Div>
+        <Div data-test="today-habit-container">
             <TextDiv $current={props.current} $highest={props.highest} $checked={check}>
                 <h1 data-test="today-habit-name">{props.name}</h1>
                 <p data-test="today-habit-sequence">Sequencia atual: <span className="current">{props.current} dias</span></p>
