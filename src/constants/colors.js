@@ -8,7 +8,8 @@ const Colors = {
     page:{Background:"#F2F2F2"},
     button:{Background:"#52B6FF", Textcolor:"#FFFFFF"},
     create:{Background:"#FFFFFF", Caption:"#DBDBDB", BtnColor:"#FFFFFF", BtnBack:"#52B6FF"},
-    habit:{Background:"#FFFFFF", Caption:"#DBDBDB", BtnColor:"#FFFFFF", BtnBack:"#52B6FF"}
+    habit:{Background:"#FFFFFF", Caption:"#DBDBDB", BtnColor:"#FFFFFF", BtnBack:"#52B6FF"},
+    check:{Checked:"#8FC549", Unchecked:"#E7E7E7"}
 };
 
 export default Colors;

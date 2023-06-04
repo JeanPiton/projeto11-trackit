@@ -3,7 +3,8 @@ const urls = {
     SignUp:"https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up",
     List:"https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits",
     Create:"https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits",
-    Remove:"https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/ID_DO_HABITO"
+    Remove:"https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/ID_DO_HABITO",
+    Today:"https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today"
 }
 
 function Parse(url,id){
