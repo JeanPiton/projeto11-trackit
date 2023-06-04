@@ -6,6 +6,7 @@ import TopBar from "./components/TopBar"
 import BottomBar from "./components/BottomBar"
 import Today from "./pages/TodayPage/Today"
 import Habits from "./pages/HabitsPage/Habits"
+import History from "./pages/HistoryPage/History"
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/cadastro" element={<Signup/>}/>
           <Route path="/hoje" element={<Today/>}/>
           <Route path="/habitos" element={<Habits/>}/>
+          <Route path="/historico" element={<History/>}/>
         </Routes>
       </BrowserRouter>
     </UserProvider>

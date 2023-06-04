@@ -6,7 +6,8 @@ const urls = {
     Remove:"https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/ID_DO_HABITO",
     Today:"https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today",
     Check:"https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/ID_DO_HABITO/check",
-    Uncheck:"https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/ID_DO_HABITO/uncheck"
+    Uncheck:"https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/ID_DO_HABITO/uncheck",
+    History:"https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/history/daily"
 }
 
 function Parse(url,id){
