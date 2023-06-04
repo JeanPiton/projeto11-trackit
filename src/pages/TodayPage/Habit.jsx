@@ -14,8 +14,8 @@ export default function Habit(props){
         <Div>
             <TextDiv $current={props.current} $highest={props.highest} $checked={check}>
                 <h1 data-test="today-habit-name">{props.name}</h1>
-                <p data-test="today-habit-sequence">Sequencia atual: <h2>{props.current} dias</h2></p>
-                <p data-test="today-habit-record">Seu recorde: <h3>{props.highest} dias</h3></p>
+                <p data-test="today-habit-sequence">Sequencia atual: <span className="current">{props.current} dias</span></p>
+                <p data-test="today-habit-record">Seu recorde: <span className="highest">{props.highest} dias</span></p>
             </TextDiv>
             <Image data-test="today-habit-check-btn" onClick={()=>Checker()} $checked={check}>
                 <img src={Check}/>
@@ -36,13 +36,11 @@ const Image = styled.div`
 
 const TextDiv = styled.div`
     p{
-        h2{
-            display: inline;
+        .current{
             color: ${prop=>prop.$checked?Colors.check.Checked:"#666666"};
         }
 
-        h3{
-            display: inline;
+        .highest{
             color: ${prop=>(prop.$current==prop.$highest)&&(prop.$highest!=0)?Colors.check.Checked:"#666666"};
         }
     }
