@@ -15,7 +15,11 @@ export default function Login(){
     const {user, SetUser} = useContext(UserContext);
     const navigate = useNavigate();
 
-    useEffect(()=>{navigate("/hoje")},[])
+    useEffect(()=>{
+        if(user){
+            navigate("/hoje")
+        }
+    },[])
 
     function doLogin(event){
         const data = {email, password}
