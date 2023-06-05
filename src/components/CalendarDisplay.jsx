@@ -32,7 +32,7 @@ export default function CalendarDisplay(props){
     console.log(Completes)
     return (
       <Div>
-          <Calendar
+          <Calendar data-test="calendar"
               onChange={setValue}
               value={value}
               formatMonthYear ={(locale, date) => dayjs(date).format('MMMM [de] YYYY')}
