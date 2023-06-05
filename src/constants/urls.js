@@ -10,10 +10,12 @@ const urls = {
     History:"https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/history/daily"
 }
 
+//replaces mockup with the real id
 function Parse(url,id){
     return url.replace("ID_DO_HABITO",id);
 }
 
+//API urls
 export default urls;
 
 export {Parse};

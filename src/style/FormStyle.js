@@ -53,4 +53,5 @@ const A = styled.p`
     text-decoration: underline;
 `;
 
+//general style for forms, Link and pages
 export {Div, Form, A};

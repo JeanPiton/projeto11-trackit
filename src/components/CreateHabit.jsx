@@ -8,21 +8,27 @@ export default function Create(props){
     const [days, setDays] = useState([]);
     const [name, setName] = useState("");
 
+    //day selection logic
     function SelectDay(id){
+        //unselect day if alredy selected
         if(days.includes(id)){
             const d = days.filter(e=>{return e!=id});
             setDays(d);
-        }else{
+        }
+        //select day
+        else{
             const d = [...days];
             d.push(id);
             setDays(d);
         }
     }
 
+    //resets the form by turning it invisible
     function Reset(){
         props.funcVisibility(false);
     }
 
+    //ensures the input is filled and submits the form
     function Confirm(event){
         event.preventDefault();
 

@@ -12,20 +12,20 @@ export default function Signup(){
     const [name, setName] = useState("");
     const [image,setImage] =useState("");
     const [btn, setBtn] = useState("Cadastrar");
+    //controls button and inputs disabled state
     const [input,setInput] = useState(false);
     const navigate = useNavigate();
 
     function SignUp(event){
         const data = {email, name, image, password}
-        console.log(data);
         event.preventDefault();
 
         setInput(true);
         setBtn(<ThreeDots color="white"/>);
+        //creates account and sends user to login page
         axios.post(urls.SignUp, data)
         .then(()=>navigate("/"))
         .catch(e=>{
-            console.log(e);
             setInput(false);
             setBtn("Cadastrar");
             alert("erro");

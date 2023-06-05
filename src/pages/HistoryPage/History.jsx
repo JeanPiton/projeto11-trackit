@@ -8,9 +8,13 @@ import UserContext from "../../contexts/UserContext";
 import Habit from "./Habit";
 
 export default function History(){
+    //list of days with all tasks completed
     const [complete, setComplete] = useState([]);
+    //list of days with tasks not completed
     const [incomplete, setIncomplete] = useState([]);
+    //list of all days with habits = [{day:"",habits[{date:"",done:bool,id:int,name:"",weekDay:int}]}]
     const [habits, setHabits] = useState([]);
+    //selected day = [{day:"",habits[{date:"",done:bool,id:int,name:"",weekDay:int}]}] with length 1
     const [day, setDay] = useState();
     const {user} = useContext(UserContext);
     const config = {headers:{Authorization:`Bearer ${user.token}`}};
@@ -18,8 +22,11 @@ export default function History(){
     useEffect(()=>{
         axios.get(urls.History,config)
         .then(r=>{
+            //all days with habits
             const data = r.data;
+            //only days where all habits has done==true
             const completeD = data.filter(e=>e.habits.filter(h=>h.done).length==e.habits.length).map(f=>f.day);
+            //only days where at least one habit has done==false
             const incompleteD = data.filter(e=>e.habits.filter(h=>h.done).length!==e.habits.length).map(f=>f.day) 
             setHabits(data);
             setComplete(completeD);
@@ -27,11 +34,11 @@ export default function History(){
         })
     },[]);
 
+    //gets the specific day to show habits
     function DayHabits(value){
         if(habits.length!=0){
             const d = habits.filter(e=>e.day == value);
             setDay(d);
-            console.log(d[0].habits[0]);
         }
     }
 

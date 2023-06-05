@@ -3,9 +3,11 @@ import Check from "../../img/check.svg";
 import Colors from "../../constants/colors";
 import { useState } from "react";
 
+//Today page habit
 export default function Habit(props){
     const check = props.done;
 
+    //Marks habit as done
     function Checker(){
         props.func(props.id, !check);
     }

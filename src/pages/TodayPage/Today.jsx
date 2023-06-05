@@ -10,10 +10,15 @@ import urls from '../../constants/urls';
 import axios from 'axios';
 
 export default function Today(){
+    //sets dayjs to pt-br
     dayjs.locale('pt-br')
+    //date of today in format = "name of weekday, day of month(2 digit int)/month o year(2 digit int)"
     let today = dayjs().format('dddd, DD/MM');
+    //makes first letter of weekday upper case
     today = today.charAt(0).toUpperCase() + today.slice(1);
+    //todays habits = [{id:int,name:"",done:bool,currentSequence:int,highestSequence:int}]
     const [habits, setHabits] = useState();
+    //updates useEffect
     const [update, setUpdate] = useState(true);
     const {user, tasks, SetTasks} = useContext(UserContext);
     const config = {headers:{Authorization:`Bearer ${user.token}`}}
@@ -22,24 +27,23 @@ export default function Today(){
         axios.get(urls.Today,config)
         .then(r=>{
             setHabits(r.data);
+            //sets total amount of tasks and amount of tasks done 
             const total = r.data.length;
             const done = r.data.filter(e=>e.done).length;
-            console.log({done, total})
             SetTasks({done, total})
         });
     },[update]);
 
+    //inverts tasks state and refreshes the list of todays tasks
     function TasksState(id, check){
         if(check){
             axios.post(Parse(urls.Check,id),{},config)
             .then(()=>{setUpdate(!update)})
             .catch(()=>alert("Tente novamente"));
-            console.log("check");
         }else{
             axios.post(Parse(urls.Uncheck,id),{},config)
             .then(()=>{setUpdate(!update)})
             .catch(()=>alert("Tente novamente"));
-            console.log("unchecked");
         }
     }
 

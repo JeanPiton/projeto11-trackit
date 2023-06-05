@@ -20,4 +20,5 @@ const Day = styled.button`
     background-color: ${prop=>prop.$selected?Colors.create.Caption:Colors.create.Background};
 `;
 
+//exports the day button and the list of characters in it
 export {week,Days,Day}

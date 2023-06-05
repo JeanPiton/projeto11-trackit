@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Colors from "../../constants/colors";
 
+//History page habit
 export default function Habit(props){
     return(
         <Div $done={props.done}>

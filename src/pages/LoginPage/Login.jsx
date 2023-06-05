@@ -10,11 +10,14 @@ import urls from "../../constants/urls";
 export default function Login(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    //controls button text between Entrar and ThreeDots animation
     const [btn, setBtn] = useState("Entrar");
+    //controls button and input disabled states
     const [input,setInput] = useState(false);
     const {user, SetUser} = useContext(UserContext);
     const navigate = useNavigate();
 
+    //logins if UserContext alredy populated
     useEffect(()=>{
         if(user){
             navigate("/hoje")
@@ -25,18 +28,19 @@ export default function Login(){
         const data = {email, password}
         event.preventDefault();
 
+        //disables form button and input
         setInput(true);
         setBtn(<ThreeDots color="white"/>);
         axios.post(urls.Login,data)
         .then(r=>{
+            //stores user login data
             SetUser(r.data);
             localStorage.setItem("user",JSON.stringify(r.data));
             navigate("/hoje")
         })
         .catch(e=>{
-            console.log(e);
             setInput(false);
-            setBtn("Cadastrar");
+            setBtn("Entrar");
             alert("erro");
         })
     }

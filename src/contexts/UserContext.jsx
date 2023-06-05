@@ -1,9 +1,11 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 const UserContext = createContext();
 
 export function UserProvider({children}){
+    //gets localStorage user info = [{id:int,name:"",image:"",email:"",password:"",token:""}]
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+    //info for the progress wheel
     const [tasks, setTasks] = useState({done:0, total:0});
 
     function SetUser(p){
@@ -19,4 +21,5 @@ export function UserProvider({children}){
     );
 }
 
+//context with user information
 export default UserContext;

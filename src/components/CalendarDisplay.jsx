@@ -3,14 +3,17 @@ import 'react-calendar/dist/Calendar.css';
 import styled from "styled-components";
 import dayjs from "dayjs";
 import 'dayjs/locale/pt-br';
-import { formatDate } from "react-calendar/dist/cjs/shared/dateFormatter";
 import { useEffect, useState } from "react";
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 
 export default function CalendarDisplay(props){
+    //allows to specifie the format received
     dayjs.extend(customParseFormat);
+    //sets dayjs to use the specified language
     dayjs.locale('pt-br');
+    //array of days with all tasks complete
     const Completes = props.DaysComplete.map(e=>dayjs(e,"DD/MM/YYYY"));
+    //array of days with tasks not completed
     const Incompletes = props.DaysIncomplete.map(e=>dayjs(e,"DD/MM/YYYY"));
     const [value, setValue] = useState(new Date());
 
@@ -18,6 +21,7 @@ export default function CalendarDisplay(props){
         clickDay(value);
     },[value])
 
+    //sets the tag class based on what list is the date included
     function Complete({date, view}){
         if(view === 'month'){
             if(Completes.find(dDate=>isSameDay(dDate,date))){
@@ -29,15 +33,16 @@ export default function CalendarDisplay(props){
         }
     }
 
+    //returns true if a and b is the same date
     function isSameDay(a, b) {
         return a.diff(b) === 0;
     }
 
+    //returns day clicked
     function clickDay(values){
         props.showHabits(dayjs(value).format("DD/MM/YYYY"));
     }
 
-    console.log(Completes)
     return (
       <Div>
           <Calendar data-test="calendar"

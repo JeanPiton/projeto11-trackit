@@ -10,6 +10,7 @@ export default function TopBar(){
     const location = useLocation();
 
     if(location.pathname=="/"||location.pathname=="/cadastro"){
+        //TopBar shall only appear if the user is logged
         return;
     }
 

@@ -12,6 +12,7 @@ export default function BottomBar(){
     const navigate = useNavigate();
 
     if(location.pathname=="/"||location.pathname=="/cadastro"){
+        //BottomBar shall only appear if the user is logged
         return;
     }
 

@@ -10,10 +10,15 @@ import Habit from "./Habit";
 import Plus from "../../img/plus.svg";
 
 export default function Habits(){
+    //updates the useEffect
     const [update, setUpdate] = useState(true);
+    //list of habits = [{id:int,name:"",days:[]}]
     const [habits, setHabits] = useState();
+    //sets form visibility
     const [creating, setCreating] = useState(false);
+    //habit being created = {name:"",days:[]}
     const [habit, setHabit] = useState();
+    //controls form buttons and input enabled state
     const [enable, setEnable] = useState(true);
     const {user} = useContext(UserContext);
     const config = {headers:{Authorization:`Bearer ${user.token}`}}
@@ -22,24 +27,25 @@ export default function Habits(){
         axios.get(urls.List,config)
         .then(r=>{
             setHabits(r.data);
-            console.log(r.data);
         })
-        .catch(r=>console.log(r))
+        .catch(r=>alert("Ocorreu um erro"))
+        //sees if habit is being created
         if(habit){
             setEnable(false);
             axios.post(urls.Create,habit,config)
             .then(()=>{
-                console.log("enviado");
+                //refreshs list displayed, resets the habit to null and hides form
                 setUpdate(!update);
                 setHabit();
                 setCreating(false);
             })
             .catch(()=>alert("Tente novamente"))
+            //enables form buttons and inputs
             .then(()=>setEnable(true));
-            console.log("Habito");
         }
     },[habit,update])
 
+    //removes habit and updates list
     function RemoveHabit(id){
         if(confirm("Você tem certeza?")){
             const url = Parse(urls.Remove, id);

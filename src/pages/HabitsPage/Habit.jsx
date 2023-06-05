@@ -3,6 +3,7 @@ import {week,Days,Day} from "../../components/DaysButton";
 import Colors from "../../constants/colors";
 import dump from "../../img/dump.svg";
 
+//Habits page habits
 export default function Habit(props){
     return(
         <Div data-test="habit-container">

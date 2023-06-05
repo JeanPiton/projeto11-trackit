@@ -12,4 +12,5 @@ const Colors = {
     check:{Checked:"#8FC549", Unchecked:"#E7E7E7"}
 };
 
+//Colors used on the project
 export default Colors;
