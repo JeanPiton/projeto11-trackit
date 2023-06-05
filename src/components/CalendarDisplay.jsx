@@ -4,7 +4,7 @@ import styled from "styled-components";
 import dayjs from "dayjs";
 import 'dayjs/locale/pt-br';
 import { formatDate } from "react-calendar/dist/cjs/shared/dateFormatter";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 
 export default function CalendarDisplay(props){
@@ -13,6 +13,10 @@ export default function CalendarDisplay(props){
     const Completes = props.DaysComplete.map(e=>dayjs(e,"DD/MM/YYYY"));
     const Incompletes = props.DaysIncomplete.map(e=>dayjs(e,"DD/MM/YYYY"));
     const [value, setValue] = useState(new Date());
+
+    useEffect(()=>{
+        clickDay(value);
+    },[value])
 
     function Complete({date, view}){
         if(view === 'month'){
@@ -27,6 +31,10 @@ export default function CalendarDisplay(props){
 
     function isSameDay(a, b) {
         return a.diff(b) === 0;
+    }
+
+    function clickDay(values){
+        props.showHabits(dayjs(value).format("DD/MM/YYYY"));
     }
 
     console.log(Completes)
